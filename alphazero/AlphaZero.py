@@ -1,4 +1,4 @@
-from MCTS import MCTS
+from alphazero.MCTS import MCTS
 
 import numpy as np
 import random

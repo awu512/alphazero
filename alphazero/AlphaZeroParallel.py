@@ -1,4 +1,4 @@
-from MCTSParallel import MCTSParallel
+from alphazero.MCTSParallel import MCTSParallel
 
 import numpy as np
 import random

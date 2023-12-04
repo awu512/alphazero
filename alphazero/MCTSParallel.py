@@ -1,4 +1,4 @@
-from MCTS import Node
+from alphazero.MCTS import Node
 
 import numpy as np
 import torch
