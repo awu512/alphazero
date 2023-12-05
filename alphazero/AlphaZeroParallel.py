@@ -115,7 +115,7 @@ class AlphaZeroParallel:
             loss.backward()
             self.optimizer.step()
 
-    def learn(self):
+    def learn(self, model_name):
         """ Generate self-play training data and train the model on it """
 
         for iter in range(self.args['num_iters']):
@@ -129,8 +129,8 @@ class AlphaZeroParallel:
             for epoch in trange(self.args['num_epochs']):
                 self.train(memory)
 
-            torch.save(self.model.state_dict(), f'models/{self.game}/model_{iter}.pt')
-            torch.save(self.optimizer.state_dict(), f'models/{self.game}/optimizer_{iter}.pt')
+            torch.save(self.model.state_dict(), f'../models/{model_name}/model_{iter}.pt')
+            torch.save(self.optimizer.state_dict(), f'../models/{model_name}/optimizer_{iter}.pt')
 
 
 class SPG:
