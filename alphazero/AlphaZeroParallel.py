@@ -3,6 +3,7 @@ from alphazero.MCTSParallel import MCTSParallel
 import numpy as np
 import random
 from tqdm import trange
+from pathlib import Path
 
 import torch
 import torch.nn.functional as F
@@ -20,7 +21,7 @@ class AlphaZeroParallel:
         self.mcts = MCTSParallel(game, args, model)
 
     def self_play(self):
-        """ Run a single self-play game until completion and generate outcome-appended training data """
+        """ Run self-play games until completion and generate outcome-appended training data """
 
         return_memory = []
         player = 1
@@ -89,7 +90,11 @@ class AlphaZeroParallel:
             sample = memory[batch_i: min(len(memory) - 1, batch_i + self.args['batch_size'])]
 
             # transpose list of tuples to independent lists
-            state, policy_targets, value_targets = zip(*sample)
+            try:
+                state, policy_targets, value_targets = zip(*sample)
+            except ValueError as e:
+                print(e)
+                continue
 
             # convert to numpy arrays
             state = np.array(state)
@@ -118,6 +123,8 @@ class AlphaZeroParallel:
     def learn(self, model_name):
         """ Generate self-play training data and train the model on it """
 
+        Path(f'models/{model_name}').mkdir(parents=True, exist_ok=True)
+
         for iter in range(self.args['num_iters']):
             memory = []
 
@@ -129,8 +136,8 @@ class AlphaZeroParallel:
             for epoch in trange(self.args['num_epochs']):
                 self.train(memory)
 
-            torch.save(self.model.state_dict(), f'../models/{model_name}/model_{iter}.pt')
-            torch.save(self.optimizer.state_dict(), f'../models/{model_name}/optimizer_{iter}.pt')
+            torch.save(self.model.state_dict(), f'models/{model_name}/model_{iter}.pt')
+            torch.save(self.optimizer.state_dict(), f'models/{model_name}/optimizer_{iter}.pt')
 
 
 class SPG:
