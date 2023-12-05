@@ -2,7 +2,9 @@ from alphazero.MCTS import MCTS
 
 import numpy as np
 import random
-from tqdm import trange
+from tqdm import tqdm, trange
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 
 import torch
 import torch.nn.functional as F
@@ -67,13 +69,16 @@ class AlphaZero:
             sample = memory[batch_i: min(len(memory) - 1, batch_i + self.args['batch_size'])]
 
             # transpose list of tuples to independent lists
-            state, policy_targets, value_targets = zip(*sample)
+            try:
+                state, policy_targets, value_targets = zip(*sample)
+            except ValueError as e:
+                print(e)
+                continue
 
             # convert to numpy arrays
             state = np.array(state)
             policy_targets = np.array(policy_targets)
-            value_targets = np.array(value_targets).reshape(-1,
-                                                            1)  # wrap each value in its own array for simplicity later
+            value_targets = np.array(value_targets).reshape(-1, 1)  # wrap each value in its own array for simplicity
 
             # convert to tensors
             state = torch.tensor(state, dtype=torch.float32, device=self.model.device)
@@ -96,16 +101,22 @@ class AlphaZero:
     def learn(self, model_name):
         """ Generate self-play training data and train the model on it """
 
+        Path(f'models/{model_name}').mkdir(parents=True, exist_ok=True)
+
         for iter in range(self.args['num_iters']):
             memory = []
 
             self.model.eval()
-            for self_play_iter in trange(self.args['num_self_play_iters']):
-                memory += self.self_play()
+            with tqdm(total=self.args['num_self_play_iters']) as pbar:
+                with ThreadPoolExecutor(max_workers=self.args['num_threads']) as executor:
+                    futures = [executor.submit(self.self_play) for _ in range(self.args['num_self_play_iters'])]
+                    for future in as_completed(futures):
+                        memory += future.result()
+                        pbar.update(1)
 
             self.model.train()
             for epoch in trange(self.args['num_epochs']):
                 self.train(memory)
 
-            torch.save(self.model.state_dict(), f'../models/{model_name}/model_{iter}.pt')
-            torch.save(self.optimizer.state_dict(), f'../models/{model_name}/optimizer_{iter}.pt')
+            torch.save(self.model.state_dict(), f'models/{model_name}/model_{iter}.pt')
+            torch.save(self.optimizer.state_dict(), f'models/{model_name}/optimizer_{iter}.pt')
