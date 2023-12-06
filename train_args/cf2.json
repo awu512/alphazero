@@ -5,7 +5,7 @@
   "num_resblocks": 9,
   "num_hidden": 128,
   "C": 2,
-  "num_searches": 600,
+  "num_searches": 450,
   "num_iters": 12,
   "num_self_play_iters": 100,
   "num_parallel_games": 100,
