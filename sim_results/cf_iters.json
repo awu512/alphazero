@@ -1,0 +1,86 @@
+[
+    {
+        "p1": "models/cf0_control/model_2.pt",
+        "p2": "models/cf0_control/model_5.pt",
+        "wins": 13,
+        "draws": 0,
+        "losses": 12
+    },
+    {
+        "p1": "models/cf0_control/model_5.pt",
+        "p2": "models/cf0_control/model_2.pt",
+        "wins": 20,
+        "draws": 0,
+        "losses": 5
+    },
+    {
+        "p1": "models/cf0_control/model_2.pt",
+        "p2": "models/cf0_control/model_8.pt",
+        "wins": 6,
+        "draws": 0,
+        "losses": 19
+    },
+    {
+        "p1": "models/cf0_control/model_8.pt",
+        "p2": "models/cf0_control/model_2.pt",
+        "wins": 19,
+        "draws": 0,
+        "losses": 6
+    },
+    {
+        "p1": "models/cf0_control/model_2.pt",
+        "p2": "models/cf0_control/model_11.pt",
+        "wins": 6,
+        "draws": 0,
+        "losses": 19
+    },
+    {
+        "p1": "models/cf0_control/model_11.pt",
+        "p2": "models/cf0_control/model_2.pt",
+        "wins": 22,
+        "draws": 0,
+        "losses": 3
+    },
+    {
+        "p1": "models/cf0_control/model_5.pt",
+        "p2": "models/cf0_control/model_8.pt",
+        "wins": 16,
+        "draws": 0,
+        "losses": 9
+    },
+    {
+        "p1": "models/cf0_control/model_8.pt",
+        "p2": "models/cf0_control/model_5.pt",
+        "wins": 17,
+        "draws": 0,
+        "losses": 8
+    },
+    {
+        "p1": "models/cf0_control/model_5.pt",
+        "p2": "models/cf0_control/model_11.pt",
+        "wins": 12,
+        "draws": 0,
+        "losses": 13
+    },
+    {
+        "p1": "models/cf0_control/model_11.pt",
+        "p2": "models/cf0_control/model_5.pt",
+        "wins": 20,
+        "draws": 0,
+        "losses": 5
+    },
+    {
+        "p1": "models/cf0_control/model_8.pt",
+        "p2": "models/cf0_control/model_11.pt",
+        "wins": 12,
+        "draws": 1,
+        "losses": 12
+    },
+    {
+        "p1": "models/cf0_control/model_11.pt",
+        "p2": "models/cf0_control/model_8.pt",
+        "wins": 20,
+        "draws": 0,
+        "losses": 5
+    }
+]

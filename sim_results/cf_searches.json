@@ -1,0 +1,16 @@
+[
+    {
+        "p1": "models/cf0_control/model_11.pt",
+        "p2": "models/cf2_searches/model_11.pt",
+        "wins": 39,
+        "draws": 1,
+        "losses": 10
+    },
+    {
+        "p1": "models/cf2_searches/model_11.pt",
+        "p2": "models/cf0_control/model_11.pt",
+        "wins": 21,
+        "draws": 1,
+        "losses": 28
+    }
+]

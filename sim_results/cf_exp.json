@@ -1,0 +1,44 @@
+[
+    {
+        "p1": "models/cf0_control/model_11.pt",
+        "p2": "models/cf4_exploration/model_11.pt",
+        "wins": 31,
+        "draws": 1,
+        "losses": 18
+    },
+    {
+        "p1": "models/cf4_exploration/model_11.pt",
+        "p2": "models/cf0_control/model_11.pt",
+        "wins": 23,
+        "draws": 0,
+        "losses": 27
+    },
+    {
+        "p1": "models/cf0_control/model_11.pt",
+        "p2": "models/cf5_exploitation/model_11.pt",
+        "wins": 24,
+        "draws": 2,
+        "losses": 24
+    },
+    {
+        "p1": "models/cf5_exploitation/model_11.pt",
+        "p2": "models/cf0_control/model_11.pt",
+        "wins": 34,
+        "draws": 1,
+        "losses": 15
+    },
+    {
+        "p1": "models/cf4_exploration/model_11.pt",
+        "p2": "models/cf5_exploitation/model_11.pt",
+        "wins": 26,
+        "draws": 1,
+        "losses": 23
+    },
+    {
+        "p1": "models/cf5_exploitation/model_11.pt",
+        "p2": "models/cf4_exploration/model_11.pt",
+        "wins": 33,
+        "draws": 1,
+        "losses": 16
+    }
+]
